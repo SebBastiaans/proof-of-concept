@@ -20,8 +20,16 @@ app.get('/', async (req, res) => {
     const exhibitResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1?')
     const exhibitResponseJSON = await exhibitResponse.json()
 
+    const sectionResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits_sections')
+    const sectionResponseJSON = await sectionResponse.json()
+
+    const personResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_persons')
+    const personResponseJSON = await personResponse.json()
+
     res.render('index.liquid', {
-     exhibit: exhibitResponseJSON.data
+     exhibits: exhibitResponseJSON.data,
+     sections: sectionResponseJSON.data,
+     persons: personResponseJSON.data
     })
 });
 
