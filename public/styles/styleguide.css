@@ -1,0 +1,58 @@
+@font-face {
+    font-family: inter;
+    src: url(/assets/fonts/Inter-VariableFont_opsz,wght.ttf);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: gentium;
+    src: url(/assets/fonts/GGentiumPlus-Regular.ttf);
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: gentium;
+    src: url(/assets/fonts/GentiumPlus-Bold.ttf);
+    font-weight: 700;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    box-sizing: border-box;
+    font-family: inter;
+    list-style: none;
+}
+
+body{
+    /* font sizes */
+    --heading-small: 1rem;
+    --heading-medium: clamp(1.25rem, 2vw, 1.5625rem);
+    --heading-big: clamp(1.5625rem, 3vw, 2.1875rem);
+
+    --paragraph-small: .875rem;
+    --paragraph-medium: 1rem;
+    --paragraph-big: clamp(1.375rem, 2.7vw, 1.75rem);
+
+    /* colors */
+    --primary-background-color: #1A3038;
+    --secondary-background-color: #F4ECDD;
+    --footer-background-color: #BE1C1D;
+
+    --primary-text-color: #F4ECDD;
+    --secondary-text-color: #1A3038;
+
+    --primary-accent-color: #FFCC00;
+    --secondary-accent-color: #F4ECDD;
+}
+
+p, a, span, button{
+    font-family: inter;
+    font-weight: 400;
+    font-size: var(--paragraph-medium);
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
