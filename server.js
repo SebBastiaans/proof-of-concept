@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
     res.render('index.liquid', {
      exhibits: exhibitResponseJSON.data,
      sections: sectionResponseJSON.data,
-     persons: personResponseJSON.data
+     persons: personResponseJSON.data,
     })
 });
 
