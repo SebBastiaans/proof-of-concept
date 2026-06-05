@@ -1,0 +1,53 @@
+<style>
+    {% for section in sections %}
+        .timeline:has(#{{ section.slug }}:target) nav a[href="#{{ section.slug }}"]{
+            background-color: var(--primary-background-color);
+            color: var(--primary-text-color);
+        }
+    {% endfor %}
+
+    /* First link is active without target  */
+    .timeline:not(:has(:target)) nav ol li:first-child a {
+        background-color: var(--primary-background-color);
+        color: var(--primary-text-color);
+    }
+</style> 
+
+<section class="timeline">
+    <h2>Tijdlijn</h2>
+
+    <nav>
+        <ol>
+            {% for section in sections %}
+                <li><a href="#{{ section.slug }}">{{ section.start_year }}</a><p>{{ section.title }}</p></li>
+            {% endfor %}
+        </ol>
+    </nav>
+
+    {% for section in sections %}
+        <article id="{{ section.slug }}">
+            <h3>{{ section.title }}</h3>
+            {% if section.cover %}
+                <picture>
+                    <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=avif">
+                    <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp">
+                    <img 
+                        width="150" 
+                        height="100" 
+                        loading="lazy" 
+                        src="https://fdnd-agency.directus.app/assets/{{ section.cover }}" 
+                        alt="{{ section.title }}"
+                    >
+                </picture>
+            {% endif %}
+            <h4>{{ section.start_year }} - {{ section.end_year }}</h4>
+            {% for block in section.content_blocks %}
+                {% if block.block_type == 'heading' %}
+                    <h4>{{ block.text }}</h4>
+                {% elsif block.block_type == 'paragraph' %}
+                    <p>{{ block.text }}</p>
+                {% endif %}
+            {% endfor %}
+        </article>
+    {% endfor %}
+</section>
