@@ -19,7 +19,7 @@
     <nav>
         <ol>
             {% for section in sections %}
-                <li><a href="#{{ section.slug }}">{{ section.start_year }}</a></li>
+                <li><a href="#{{ section.slug }}">{{ section.start_year }}</a><p>{{ section.title }}</p></li>
             {% endfor %}
         </ol>
     </nav>
@@ -40,6 +40,7 @@
                     >
                 </picture>
             {% endif %}
+            <h4>{{ section.start_year }} - {{ section.end_year }}</h4>
             {% for block in section.content_blocks %}
                 {% if block.block_type == 'heading' %}
                     <h4>{{ block.text }}</h4>
