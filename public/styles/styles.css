@@ -5,9 +5,8 @@ body{
 
 /* MARK: timeline partial */
 section.timeline{
-    padding-inline: 1rem;
-    padding-block-start: 1rem;
-    height: 100dvh;
+    padding: 1rem;
+    height: fit-content;
     display: grid;
     grid-template-rows: auto auto 1fr;
 
@@ -84,7 +83,6 @@ section.timeline{
 
 @media (min-width: 64rem){
     section.timeline{
-        height: 100dvh;
         display: grid;
         grid-template-columns: 19rem auto;
         grid-template-areas: 
@@ -133,5 +131,157 @@ section.timeline{
                 padding-inline: 0rem;
             }
         }
+    }
+}
+
+/* MARK: quiz cards */
+
+section.quiz{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    h2{
+        padding-inline: 1rem;
+    }
+
+    article{
+        width: 75%;
+        background-color: var(--secondary-background-color);
+        color: var(--secondary-text-color);
+
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: .5rem;
+
+        ul:first-of-type{
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+            li{
+                background-color: var(--primary-accent-color);
+                gap: .3rem;
+                border: 2px black solid;
+
+                &:hover{
+                    background-color: #ffd323;
+                }
+
+                button{
+                    background: none;
+                    border: none;
+
+                }
+            }
+        }
+
+        .button-wrapper{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: .3rem;
+
+            padding-block-start: .3rem;
+
+            li{
+                a{
+                    padding-inline: .1rem;
+                    border: none;
+                    background: none;
+                    color: var(--secondary-text-color);
+                    display: block;
+                    position: relative;
+
+                    span{
+                        display: none;
+                        color: var(--secondary-text-color);
+                    }
+                }
+            }
+
+            li:nth-of-type(2){
+                a{
+                    color:green;
+                    display: flex;
+                    align-items: center;
+                    gap: .2rem;
+                    font-weight: bold;
+                }
+            }
+
+            /* https://css-irl.info/animating-underlines/ */
+            a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 0.1em;
+                background-color: black;
+                opacity: 0;
+                transition: opacity 300ms, transform 300ms;
+            }
+
+            a:hover::after,
+            a:focus::after {
+                opacity: 1;
+            }
+
+            /* Slide in */
+            li:nth-child(3) a {
+                overflow: hidden;
+            }
+
+            li:nth-child(3) a::after {
+                opacity: 1;
+                transform: translate3d(-100%, 0, 0);
+            }
+
+            li:nth-child(3) a:hover::after,
+            li:nth-child(3) a:focus::after{
+                transform: translate3d(0, 0, 0);
+            }
+
+            /* Scale from center */
+            li:nth-child(2) a::after {
+                opacity: 1;
+                transform: scale(0);
+                transform-origin: center;
+                background-color: green;
+            }
+
+            li:nth-child(2) a:hover::after,
+            li:nth-child(2) a:focus::after{
+                transform: scale(1);
+            }
+
+            /* Slide in */
+            li:first-child a {
+                overflow: hidden;
+            }
+
+            li:first-child a::after {
+                opacity: 1;
+                transform: translate3d(100%, 0, 0);
+            }
+
+            li:first-child a:hover::after,
+            li:first-child a:focus::after{
+                transform: translate3d(0, 0, 0);
+            }  
+        }
+    }
+
+    h3, p, button{
+        color: var(--secondary-text-color);
+        text-align: center;
+        appearance: none;
+    }
+
+    button:hover{
+        
+        cursor: pointer;
     }
 }
