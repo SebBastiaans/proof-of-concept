@@ -138,6 +138,14 @@ section.timeline{
 }
 
 /* MARK: quiz cards */
+@keyframes loading-sweep {
+    from {
+        background-position: 100% 0;
+    }
+    to {
+        background-position: -100% 0;
+    }
+}
 
 section.quiz{
     padding-inline: 1rem;
@@ -189,7 +197,6 @@ section.quiz{
                     li{
                         background-color: var(--primary-accent-color);
                         padding: .3rem;
-                        /* border: 2px var(--primary-background-color) solid; */
 
                         &:hover{
                             background-color: #ffd323;
@@ -213,6 +220,7 @@ section.quiz{
                                 display: block;
                             }
                         }
+
                         &.wrong-answer{
                             background-color: red;
                             color: var(--primary-text-color);
@@ -239,6 +247,17 @@ section.quiz{
 
                         .answer-feedback{
                             display: none;
+                        }
+
+                        &.is-loading{
+                            background-image: linear-gradient(
+                                90deg,
+                                transparent 0%,
+                                rgba(0, 0, 0, 0.2) 80%,
+                                transparent 100%
+                            );
+                            background-size: 200% 100%;
+                            animation: loading-sweep 1s ease-in-out infinite;
                         }
                     }
 

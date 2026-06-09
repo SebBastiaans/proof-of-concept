@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const feedbackLinks = document.querySelectorAll('.wrong-answer a')
 	const rightAnswer = document.querySelector('.right-answer')
 	const wrongAnswer = document.querySelector('.wrong-answer')
 
-    // Auto-scroll to the next question when an answer is correct
+	// Auto-scroll to the correct question on page reload
 	if (rightAnswer) {
 		const currentQuestion = rightAnswer.closest('li[id^="vraag-"]')
 		const nextQuestion = currentQuestion?.nextElementSibling
-
 		if (nextQuestion) {
 			nextQuestion.scrollIntoView({ behavior: 'smooth' })
 		}
@@ -19,15 +17,63 @@ document.addEventListener('DOMContentLoaded', () => {
 		wrongQuestion?.scrollIntoView({ behavior: 'smooth' })
 	}
 
-    // Remove wrong-answer class and clean URL so the quiz resets
-	const resetWrongAnswer = () => {
+    // Reset wrong-answer state when clicking the feedback link
+	document.addEventListener('click', (event) => {
+		const link = event.target.closest('.wrong-answer a')
+		if (!link) return
+
 		document.querySelectorAll('.wrong-answer').forEach(item => {
 			item.classList.remove('wrong-answer')
 		})
 		history.replaceState(null, '', '/')
-	}
+	})
 
-	feedbackLinks.forEach(link => {
-		link.addEventListener('click', resetWrongAnswer)
+	// Enhance answer form — intercept submit and handle client-side
+	document.addEventListener('submit', async (event) => {
+		const form = event.target
+
+		// Only enhance forms with data-enhanced attribute
+		if (!form.hasAttribute('data-enhanced')) return
+
+		event.preventDefault()
+
+        // Add loading state to the clicked list item
+        const clickedListItem = form.closest('li')
+        clickedListItem.classList.add('is-loading')
+
+		const formData = new FormData(form)
+		if (event.submitter) {
+			formData.append(event.submitter.name, event.submitter.value)
+		}
+
+		// POST to the server just like the browser would
+		const response = await fetch(form.action, {
+			method: form.method,
+			body: new URLSearchParams(formData)
+		})
+
+		// Parse the returned HTML into a new DOM
+		const responseText = await response.text()
+		const parser = new DOMParser()
+		const responseDOM = parser.parseFromString(responseText, 'text/html')
+
+		// Find the updated answer list in the new DOM and replace it in the page
+		const enhancedKey = form.getAttribute('data-enhanced')
+		const newState = responseDOM.querySelector(`[data-enhanced="${enhancedKey}"]`)
+        const currentList = document.querySelector(`[data-enhanced="${enhancedKey}"]`)
+
+		if (newState) {
+			currentList.outerHTML = newState.outerHTML
+
+            // After update, scroll to next question if answer was correct
+			const rightAnswer = document.querySelector('.right-answer')
+			if (rightAnswer) {
+				const currentQuestion = rightAnswer.closest('li[id^="vraag-"]')
+				const nextQuestion = currentQuestion?.nextElementSibling
+				if (nextQuestion) {
+					nextQuestion.scrollIntoView({ behavior: 'smooth' })
+				}
+			}
+		}
 	})
 })

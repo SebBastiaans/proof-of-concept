@@ -5,7 +5,7 @@
         {% for question in questions %}
             {%  assign question_index = forloop.index %}
             <li class="quiz-list-items" id="vraag-{{ question_index }}">{% comment %} Counts where in the loop it is. {% endcomment %}
-                <article>
+                <article data-enhanced="question-{{ question.id }}">
                     <h3>{{ question.question }}</h3>
 
                     {% assign questionIdString = question.id | append: '' %}
@@ -16,7 +16,7 @@
                             <li class="{% if success == questionIdString and answer == option.key %}right-answer{% elsif failed == questionIdString and answer == option.key %}wrong-answer{% endif %}">
                                 
                                 <p class="answer-option">{{ option.key }}</p>
-                                <form class="answer-option" action="/" method="POST">
+                                <form class="answer-option" action="/" method="POST" data-enhanced="question-{{ question.id }}">
                                     <input type="hidden" name="questionId" value="{{ question.id }}">
                                     <button type="submit" name="answer" value="{{ option.key }}">{{ option.answer }}</button>
                                 </form>
