@@ -17,11 +17,14 @@ section.timeline{
         ol{
             display: flex;
             justify-content: space-evenly;
+            flex-wrap: nowrap;
             overflow-x: scroll;
             scroll-snap-type: x mandatory;
 
-
             li{
+                scroll-snap-align: start;
+                flex-shrink: 0;
+
                 &:target{
                     background-color: var(--primary-background-color);
                 }
@@ -205,7 +208,10 @@ section.quiz{
                         button{
                             background: none;
                             border: none;
-                            text-align: center;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
                         }
 
                         &.right-answer{
@@ -313,19 +319,6 @@ section.quiz{
                         transform: translate3d(0, 0, 0);
                     }
 
-                    /* Scale from center */
-                    /* li:nth-child(2) a::after {
-                        opacity: 1;
-                        transform: scale(0);
-                        transform-origin: center;
-                        background-color: green;
-                    }
-
-                    li:nth-child(2) a:hover::after,
-                    li:nth-child(2) a:focus::after{
-                        transform: scale(1);
-                    } */
-
                     /* Slide in */
                     a.previous-link {
                         overflow: hidden;
@@ -343,7 +336,7 @@ section.quiz{
                 }
             }
 
-            h3, p, button{
+            h3, p, span, button{
                 color: var(--secondary-text-color);
                 text-align: center;
                 appearance: none;
