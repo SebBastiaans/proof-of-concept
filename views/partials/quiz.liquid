@@ -3,103 +3,46 @@
 
     <ul class="quiz-list">
         {% for question in questions %}
-            <li class="quiz-list-items" id="vraag-{{ forloop.index }}">{% comment %} Counts where in the loop it is. {% endcomment %}
+            {%  assign question_index = forloop.index %}
+            <li class="quiz-list-items" id="vraag-{{ question_index }}">{% comment %} Counts where in the loop it is. {% endcomment %}
                 <article>
                     <h3>{{ question.question }}</h3>
 
+                    {% assign questionIdString = question.id | append: '' %}
+                    {% assign related_section = sections | where: 'id', question.exhibit_section | first %}
+
                     <ul class="answer-list">
                         {% for option in question.options %}
-                            <li>
-                                <p>{{ option.key }}</p>
-                                <form action="/" method="POST">
-                                    <button type="submit" name="answer" value="{{ option.key }}">
-                                        {{ option.answer }}
-                                    </button>
+                            <li class="{% if success == questionIdString and answer == option.key %}right-answer{% elsif failed == questionIdString and answer == option.key %}wrong-answer{% endif %}">
+                                
+                                <p class="answer-option">{{ option.key }}</p>
+                                <form class="answer-option" action="/" method="POST">
+                                    <input type="hidden" name="questionId" value="{{ question.id }}">
+                                    <button type="submit" name="answer" value="{{ option.key }}">{{ option.answer }}</button>
                                 </form>
-                            </li>                    
+
+                                {% if success == questionIdString and answer == option.key %}
+                                    <p class="answer-feedback">{{ question.explanation_correct }}</p>
+                                {% elsif failed == questionIdString and answer == option.key %}
+                                    <p class="answer-feedback">{{ question.explanation_wrong }}</p>
+                                    <a class="answer-feedback" href="#{{ related_section.slug }}">Lees terug →</a>
+                                {% endif %}
+
+                            </li>
                         {% endfor %}
                     </ul>
 
                     <nav class="quiz-navigation" aria-label="Quiz navigatie">
                         {%  unless forloop.first %}
-                                <a class="previeus-link" href="#vraag-{{ forloop.index |  minus: 1 }}">← Vorige</a>
+                                <a class="previous-link" href="#vraag-{{ question_index |  minus: 1 }}">← Vorige</a>
                         {% endunless %} 
 
                         {%  unless forloop.last %}
-                                <a class="next-link" href="#vraag-{{ forloop.index |  plus: 1 }}">Volgende →</a>
+                                <a class="next-link" href="#vraag-{{ question_index |  plus: 1 }}">Volgende →</a>
                         {% endunless %}
                     </nav>
                 </article>
             </li>
         {% endfor %}
-            {% comment %} Dummy items om te kijken {% endcomment %}
-        {% comment %} <li class="quiz-list-items">
-            {% for question in questions %}
-                <article>
-                    <h3>{{ question.question }}</h3>
-
-                    <ul class="answer-wrapper">
-                        {% for option in question.options %}
-                            <li>
-                                <p>{{ option.key }}</p>
-                                <form action="/" method="POST">
-                                    <button>{{ option.answer }}</button>
-                                </form>
-                            </li>                    
-                        {% endfor %}
-                    </ul>
-
-                    <ul class="button-wrapper">
-                        <li><a href="">←<span> Vorige</span></a></li>
-                        <li>                
-                            <a href="">
-                                Krijg een hint
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#F4ECDD" stroke="#1A3038" stroke-width="1.5"/>
-                                <path d="M9.5 9C9.5 7.619 10.619 6.5 12 6.5C13.381 6.5 14.5 7.619 14.5 9C14.5 10.1 13.833 11.05 12.875 11.5C12.375 11.733 12 12.2 12 12.75V13.5" stroke="#1A3038" stroke-width="1.75" stroke-linecap="round"/>
-                                <path d="M12 17.5C12.5523 17.5 13 17.0523 13 16.5C13 15.9477 12.5523 15.5 12 15.5C11.4477 15.5 11 15.9477 11 16.5C11 17.0523 11.4477 17.5 12 17.5Z" fill="#1A3038"/>
-                                </svg>
-                            </a>
-                        </li>
-                        <li><a href="">→<span> Volgende</span></a></li>
-                    </ul>
-
-                </article>
-            {% endfor %}
-        </li>        
-        <li class="quiz-list-items">
-            {% for question in questions %}
-                <article>
-                    <h3>{{ question.question }}</h3>
-
-                    <ul class="answer-wrapper">
-                        {% for option in question.options %}
-                            <li>
-                                <p>{{ option.key }}</p>
-                                <form action="/" method="POST">
-                                    <button>{{ option.answer }}</button>
-                                </form>
-                            </li>                    
-                        {% endfor %}
-                    </ul>
-
-                    <ul class="button-wrapper">
-                        <li><a href="">←<span> Vorige</span></a></li>
-                        <li>                
-                            <a href="">
-                                Krijg een hint
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#F4ECDD" stroke="#1A3038" stroke-width="1.5"/>
-                                <path d="M9.5 9C9.5 7.619 10.619 6.5 12 6.5C13.381 6.5 14.5 7.619 14.5 9C14.5 10.1 13.833 11.05 12.875 11.5C12.375 11.733 12 12.2 12 12.75V13.5" stroke="#1A3038" stroke-width="1.75" stroke-linecap="round"/>
-                                <path d="M12 17.5C12.5523 17.5 13 17.0523 13 16.5C13 15.9477 12.5523 15.5 12 15.5C11.4477 15.5 11 15.9477 11 16.5C11 17.0523 11.4477 17.5 12 17.5Z" fill="#1A3038"/>
-                                </svg>
-                            </a>
-                        </li>
-                        <li><a href="">→<span> Volgende</span></a></li>
-                    </ul>
-
-                </article>
-            {% endfor %}
-        </li>  {% endcomment %}
     </ul> 
 </section>

@@ -178,7 +178,7 @@ section.quiz{
                 padding: .5rem;
                 height: fit-content;
 
-                .answer-list{
+                ul.answer-list{
                     display: flex;
                     flex-direction: column;
                     gap: .3rem;
@@ -188,8 +188,8 @@ section.quiz{
 
                     li{
                         background-color: var(--primary-accent-color);
-                        gap: .3rem;
-                        border: 2px var(--primary-background-color) solid;
+                        padding: .3rem;
+                        /* border: 2px var(--primary-background-color) solid; */
 
                         &:hover{
                             background-color: #ffd323;
@@ -200,6 +200,50 @@ section.quiz{
                             border: none;
                             text-align: center;
                         }
+
+                        &.right-answer{
+                            background-color: green;
+                            color: var(--primary-text-color);
+
+                            .answer-option{
+                                display: none;
+                            }
+
+                            .answer-feedback{
+                                display: block;
+                            }
+                        }
+                        &.wrong-answer{
+                            background-color: red;
+                            color: var(--primary-text-color);
+                            display: flex;
+                            flex-direction: column;
+
+                            p{
+                                color: var(--primary-text-color);
+                            }
+
+                            a{
+                                align-self: center;
+                                text-decoration: underline;
+                            }
+
+                            .answer-option{
+                                display: none;
+                            }
+
+                            .answer-feedback{
+                                display: block;
+                            }
+                        }
+
+                        .answer-feedback{
+                            display: none;
+                        }
+                    }
+
+                    &:has(.right-answer, .wrong-answer) li:not(.right-answer):not(.wrong-answer){
+                        display: none;
                     }
                 }
 
@@ -264,7 +308,7 @@ section.quiz{
                     } */
 
                     /* Slide in */
-                    a.previeus-link {
+                    a.previous-link {
                         overflow: hidden;
                     }
 

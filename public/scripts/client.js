@@ -1,28 +1,33 @@
-// const initTimeline = () => {
-//     const articles = document.querySelectorAll('.timeline-articles li')
-//     const navLinks = document.querySelectorAll('.timeline nav a')
+document.addEventListener('DOMContentLoaded', () => {
+	const feedbackLinks = document.querySelectorAll('.wrong-answer a')
+	const rightAnswer = document.querySelector('.right-answer')
+	const wrongAnswer = document.querySelector('.wrong-answer')
 
-//     // smooth scroll bij klikken
-//     navLinks.forEach((link) => {
-//         link.addEventListener('click', (event) => {
-//             event.preventDefault()
-//             const target = document.querySelector(link.getAttribute('href'))
-//             target.scrollIntoView({ behavior: 'smooth' })
-//         })
-//     })
+    // Auto-scroll to the next question when an answer is correct
+	if (rightAnswer) {
+		const currentQuestion = rightAnswer.closest('li[id^="vraag-"]')
+		const nextQuestion = currentQuestion?.nextElementSibling
 
-//     // actieve nav item bij scrollen
-//     const observer = new IntersectionObserver((entries) => {
-//         entries.forEach((entry) => {
-//             if (entry.isIntersecting) {
-//                 navLinks.forEach((link) => link.classList.remove('active-year'))
-//                 const activeLink = document.querySelector(`.timeline nav a[href="#${entry.target.id}"]`)
-//                 if (activeLink) activeLink.classList.add('active-year')
-//             }
-//         })
-//     }, { threshold: 0.5 })
+		if (nextQuestion) {
+			nextQuestion.scrollIntoView({ behavior: 'smooth' })
+		}
+	}
 
-//     articles.forEach((article) => observer.observe(article))
-// }
+    // Auto-scroll to the wrong answer question on page reload
+	if (wrongAnswer) {
+		const wrongQuestion = wrongAnswer.closest('li[id^="vraag-"]')
+		wrongQuestion?.scrollIntoView({ behavior: 'smooth' })
+	}
 
-// initTimeline()
+    // Remove wrong-answer class and clean URL so the quiz resets
+	const resetWrongAnswer = () => {
+		document.querySelectorAll('.wrong-answer').forEach(item => {
+			item.classList.remove('wrong-answer')
+		})
+		history.replaceState(null, '', '/')
+	}
+
+	feedbackLinks.forEach(link => {
+		link.addEventListener('click', resetWrongAnswer)
+	})
+})
