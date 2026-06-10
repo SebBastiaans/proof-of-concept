@@ -76,6 +76,7 @@ section.timeline{
             position: relative;
             transform: translateX(-50%);
             left: 50%;
+            padding-top: 1rem;
         }
         h4, p{
             padding-block: .3rem;
