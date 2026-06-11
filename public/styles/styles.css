@@ -97,14 +97,14 @@ main{
             background-color: var(--secondary-background-color);
         }
     }
-
-    @media (min-width: 64rem){
-        padding-inline: 3rem;
-    }
 }
 
 section{
-    padding-inline: 1rem;
+    padding: .5rem 1rem;
+
+    @media (min-width: 64rem){
+        padding: 2.5rem 5rem;
+    }
 }
 
 /* MARK: information-section */
@@ -143,7 +143,7 @@ section.information-section{
 
     details{
         margin-block: 1rem;
-        
+
         summary{
             display: flex;
             align-items: center;
@@ -245,6 +245,32 @@ section.information-section{
         li{
             margin-bottom: 1rem;
             text-wrap: pretty;
+        }
+    }
+
+    @media (min-width: 64rem){
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+
+        .period,
+        h1,
+        .creator,
+        button,
+        .object-type,
+        h2.small-heading,
+        details{
+            grid-column: 1;
+        }
+
+        .displayed{
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        ul{
+            grid-column: 2;
+            grid-row-start: 2;
+            grid-row-end: 9;
         }
     }
 }
