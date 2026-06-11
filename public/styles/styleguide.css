@@ -49,7 +49,7 @@ body{
     --secondary-accent-color: #F4ECDD;
 }
 
-p, a, span, button{
+p, a, span, button, summary{
     font-family: inter, sans-serif;
     font-weight: 400;
     font-size: var(--paragraph-medium);
