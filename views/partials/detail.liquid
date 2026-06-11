@@ -1,0 +1,50 @@
+<picture>
+    <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=avif">
+    <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=webp">
+    <img 
+        width="150" 
+        height="100" 
+        loading="eager" 
+        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}" 
+        alt="{{ exhibits.title }}"
+    >
+</picture>
+
+<section class="information-section">
+    <p>{{ exhibits.period }}</p>
+    <h1>{{ exhibits.title }}</h1>
+    <p>{{ persons.first.last_name }}, {{ persons.first.first_name }}</p>
+    <button class="primary-button-styled">Bekijk onze hele collectie</button>
+    <h2>Objecttype</h2>
+    <p>{{ exhibits.object_type }}</p>
+    <details>
+        <summary>
+            Meer details
+            <h2>Maker(s)</h2>
+            <ul>
+                {% for person in persons %}
+                    <li>
+                        <p>{{ person.last_name }}, {{ person.first_name }} ({{ person.birth_year }}-{{ person.death_year }})</p>
+                        <p>{{ person.roles | join: ", " }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </summary>
+    </details>
+
+    {% if exhibits.is_on_display == true %}
+        <p><span class="on-display"></span>Nu te zien in het museum</p>
+    {% elsif exhibits.is_on_display == false %}
+        <p><span class="not-on-display"></span>Niet te zien in het museum</p>
+    {% else %}
+        <p><span class="unknown-display"></span>Onbekend of dit object te zien is</p>
+    {% endif %}
+
+    <ul>
+        {% for content in exhibits.content_blocks %}
+            <li>
+                <p>{{ content.text }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
