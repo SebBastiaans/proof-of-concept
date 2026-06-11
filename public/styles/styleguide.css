@@ -69,9 +69,16 @@ h1, h2, h3, h4{
     background-color: var(--primary-accent-color);
     color: var(--secondary-text-color);
     transition: .2s ease;
+    width: fit-content;
 
     &:hover{
         color: var(--primary-accent-color);
-        background:none;
+        background: none;
     }
+}
+
+.small-heading{
+    font-family: inter, sans-serif;
+    font-size: var(--paragraph-small);
+    font-weight: 400;
 }
