@@ -3,6 +3,41 @@ body{
     cursor: auto;
 }
 
+/* MARK: header  */
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1.5rem;
+
+    a:first-of-type{
+        width: 3.75rem;
+    }
+
+    a:nth-of-type(2){
+        display: none;
+    }
+
+    details{
+        display: none;
+    }
+
+    button{
+        display: none;
+    }
+
+    div.menu-wrapper{
+        display: grid;
+        justify-items: center;
+        align-content: center;
+        gap: .2rem;
+
+        svg{
+            width: 100%;
+            justify-self: stretch;
+        }
+    }
+}
+
 /* MARK: timeline partial */
 section.timeline{
     padding-inline: 1rem;
