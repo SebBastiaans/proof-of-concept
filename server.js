@@ -17,7 +17,7 @@ app.set('views', './views')
 
 app.get('/', async (req, res) => {
 
-    const exhibitResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1?')
+    const exhibitResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1?fields=*,content_blocks.*')
     const exhibitResponseJSON = await exhibitResponse.json()
 
     const sectionResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits_sections?fields=*')
@@ -41,6 +41,6 @@ app.listen(app.get('port'), function () {
 })
 
 
-app.use((req, res, next) => {
-  res.status(404).render('404.liquid')
-})
+// app.use((req, res, next) => {
+//   res.status(404).render('404.liquid')
+// })

@@ -1,0 +1,54 @@
+<picture class="main-image">
+    <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=avif">
+    <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=webp">
+    <img 
+        width="150" 
+        height="100" 
+        loading="eager" 
+        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}" 
+        alt="{{ exhibits.title }}"
+    >
+</picture>
+
+<section class="information-section">
+    <p class="period">{{ exhibits.period }}</p>
+    <h1>{{ exhibits.title }}</h1>
+    <p class="creator">{{ persons.first.last_name }}, {{ persons.first.first_name }}</p>
+    <button class="primary-button-styled">Bekijk onze hele collectie</button>
+    <h2 class="small-heading">Objecttype</h2>
+    <p class="object-type">{{ exhibits.object_type }}</p>
+    <details>
+        <summary>
+            details
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="16.75" x2="16.75" y2="32" stroke="black" stroke-width="2"/>
+                <line y1="15.25" x2="32" y2="15.25" stroke="black" stroke-width="2"/>
+            </svg>
+        </summary>
+
+        <h2 class="small-heading">Maker(s)</h2>
+
+        <div>
+            {% for person in persons %}
+                <p>{{ person.last_name }}, {{ person.first_name }} ({{ person.birth_year }}-{{ person.death_year }})</p>
+                <p>{{ person.roles | join: ", " }}</p>
+            {% endfor %}
+        </div>
+    </details>
+
+    {% if exhibits.is_on_display == true %}
+        <p class="displayed"><span class="on-display"></span>Nu te zien in het museum</p>
+    {% elsif exhibits.is_on_display == false %}
+        <p class="displayed"><span class="not-on-display"></span>Niet te zien in het museum</p>
+    {% else %}
+        <p class="displayed"><span></span>Onbekend of dit object te zien is</p>
+    {% endif %}
+
+    <ul>
+        {% for content in exhibits.content_blocks %}
+            <li>
+                <p>{{ content.text }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
