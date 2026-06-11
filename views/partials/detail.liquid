@@ -21,14 +21,10 @@
         <summary>
             Meer details
             <h2>Maker(s)</h2>
-            <ul>
-                {% for person in persons %}
-                    <li>
-                        <p>{{ person.last_name }}, {{ person.first_name }} ({{ person.birth_year }}-{{ person.death_year }})</p>
-                        <p>{{ person.roles | join: ", " }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+            {% for person in persons %}
+                <p>{{ person.last_name }}, {{ person.first_name }} ({{ person.birth_year }}-{{ person.death_year }})</p>
+                <p>{{ person.roles | join: ", " }}</p>
+            {% endfor %}
         </summary>
     </details>
 
