@@ -1,0 +1,47 @@
+<section class="quiz">
+    <h2>Quiz</h2>
+
+    <ul class="quiz-list">
+        {% for question in questions %}
+            {%  assign question_index = forloop.index %}
+            <li class="quiz-list-items" id="vraag-{{ question_index }}">{% comment %} Counts where in the loop it is. {% endcomment %}
+                <article data-enhanced="question-{{ question.id }}">
+                    <h3>{{ question.question }}</h3>
+
+                    {% assign questionIdString = question.id | append: '' %}
+                    {% assign related_section = sections | where: 'id', question.exhibit_section | first %}
+
+                    <ul class="answer-list">
+                        {% for option in question.options %}
+                            <li class="{% if success == questionIdString and answer == option.key %}right-answer{% elsif failed == questionIdString and answer == option.key %}wrong-answer{% endif %}">
+                                
+                                <form class="answer-option" action="/" method="POST" data-enhanced="question-{{ question.id }}">
+                                    <input type="hidden" name="questionId" value="{{ question.id }}">
+                                    <button type="submit" name="answer" value="{{ option.key }}"><span>{{ option.key }}</span>{{ option.answer }}</button>
+                                </form>
+
+                                {% if success == questionIdString and answer == option.key %}
+                                    <p class="answer-feedback">{{ question.explanation_correct }}</p>
+                                {% elsif failed == questionIdString and answer == option.key %}
+                                    <p class="answer-feedback">{{ question.explanation_wrong }}</p>
+                                    <a class="answer-feedback" href="#{{ related_section.slug }}">Lees terug →</a>
+                                {% endif %}
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <nav class="quiz-navigation" aria-label="Quiz navigatie">
+                        {%  unless forloop.first %}
+                                <a class="previous-link" href="#vraag-{{ question_index |  minus: 1 }}">← Vorige</a>
+                        {% endunless %} 
+
+                        {%  unless forloop.last %}
+                                <a class="next-link" href="#vraag-{{ question_index |  plus: 1 }}">Volgende →</a>
+                        {% endunless %}
+                    </nav>
+                </article>
+            </li>
+        {% endfor %}
+    </ul> 
+</section>
