@@ -69,6 +69,8 @@ h2{
 
 :focus-visible{
     outline: 2px solid blue;
+}
+
 .primary-button-styled{
     padding: .5rem 1.5rem;
     appearance: none;
@@ -88,4 +90,12 @@ h2{
     font-family: inter, sans-serif;
     font-size: var(--paragraph-small);
     font-weight: 400;
+}
+
+section{
+    padding: .5rem 1rem;
+
+    @media (min-width: 64rem){
+        padding: 2.5rem 5rem;
+    }
 }
