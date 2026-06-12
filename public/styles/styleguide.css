@@ -49,7 +49,7 @@ body{
     --secondary-accent-color: #F4ECDD;
 }
 
-p, a, span, button{
+p, a, span, button, summary{
     font-family: inter, sans-serif;
     font-weight: 400;
     font-size: var(--paragraph-medium);
@@ -69,4 +69,23 @@ h2{
 
 :focus-visible{
     outline: 2px solid blue;
+.primary-button-styled{
+    padding: .5rem 1.5rem;
+    appearance: none;
+    border: 2px solid var(--primary-accent-color);
+    background-color: var(--primary-accent-color);
+    color: var(--secondary-text-color);
+    transition: .2s ease;
+    width: fit-content;
+
+    &:hover{
+        color: var(--primary-accent-color);
+        background: none;
+    }
+}
+
+.small-heading{
+    font-family: inter, sans-serif;
+    font-size: var(--paragraph-small);
+    font-weight: 400;
 }
