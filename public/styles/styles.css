@@ -277,8 +277,7 @@ section.information-section{
 
 /* MARK: timeline partial */
 section.timeline{
-    padding: 1rem;
-    height: fit-content;
+    height: 100dvh;
     display: grid;
     grid-template-rows: auto auto 1fr;
 
@@ -289,14 +288,8 @@ section.timeline{
         ol{
             display: flex;
             justify-content: space-evenly;
-            flex-wrap: nowrap;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
 
             li{
-                scroll-snap-align: start;
-                flex-shrink: 0;
-
                 &:target{
                     background-color: var(--primary-background-color);
                 }
@@ -341,14 +334,8 @@ section.timeline{
             text-align: center;
         }
         img{
-            width: auto;
-            height: 100%;
-            max-height: 20rem;
-            aspect-ratio: 1/1;
-            position: relative;
-            transform: translateX(-50%);
-            left: 50%;
-            padding-top: 1rem;
+            width: 100%;
+            height: auto;
         }
         h4, p{
             padding-block: .3rem;
@@ -367,6 +354,7 @@ section.timeline{
 
 @media (min-width: 64rem){
     section.timeline{
+        height: 100dvh;
         display: grid;
         grid-template-columns: 19rem auto;
         grid-template-areas: 
@@ -377,6 +365,8 @@ section.timeline{
             background-color: var(--secondary-background-color);
             color: var(--secondary-text-color);
             grid-area: title;
+            font-size: var(--heading-big);
+            padding-inline-start: .5rem;
         }
 
         nav{
@@ -412,240 +402,5 @@ section.timeline{
                 padding-inline: 0rem;
             }
         }
-    }
-}
-
-/* MARK: quiz cards */
-@keyframes loading-sweep {
-    from {
-        background-position: 100% 0;
-    }
-    to {
-        background-position: -100% 0;
-    }
-}
-
-section.quiz{
-    padding-inline: 1rem;
-
-    ul.quiz-list{
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        gap: 25rem;
-
-        display: flex;
-        anchor-name: --carousel;
-
-        li.quiz-list-items{
-            flex-shrink: 0;
-            width: 70%;
-            list-style: none;
-            display: flex;
-            scroll-snap-align: center;
-            transform: translateX(50%);
-
-            &:last-of-type{
-                margin-right: 50%;
-            }
-
-            &:first-of-type{
-                article{
-                    nav{
-                        flex-direction: row-reverse;
-                    }
-                }
-            }
-
-            article{
-                background-color: var(--secondary-background-color);
-                color: var(--secondary-text-color);
-                padding: .5rem;
-                height: fit-content;
-
-                ul.answer-list{
-                    display: flex;
-                    flex-direction: column;
-                    gap: .3rem;
-
-                    li{
-                        background-color: var(--primary-accent-color);
-                        padding: .3rem;
-
-                        &:hover{
-                            background-color: #ffd323;
-                        }
-
-                        button{
-                            background: none;
-                            border: none;
-                            width: 100%;
-                            height: 100%;
-                            display: flex;
-                            flex-direction: column;
-                        }
-
-                        &.right-answer{
-                            background-color: green;
-                            color: var(--primary-text-color);
-
-                            .answer-option{
-                                display: none;
-                            }
-
-                            .answer-feedback{
-                                display: block;
-                                color: var(--primary-text-color);
-                            }
-                        }
-
-                        &.wrong-answer{
-                            background-color: red;
-                            color: var(--primary-text-color);
-                            display: flex;
-                            flex-direction: column;
-
-                            p{
-                                color: var(--primary-text-color);
-                            }
-
-                            a{
-                                align-self: center;
-                                text-decoration: underline;
-                            }
-
-                            .answer-option{
-                                display: none;
-                            }
-
-                            .answer-feedback{
-                                display: block;
-                            }
-                        }
-
-                        .answer-feedback{
-                            display: none;
-                        }
-
-                        &.is-loading{
-                            background-image: linear-gradient(
-                                90deg,
-                                transparent 0%,
-                                rgba(0, 0, 0, 0.2) 80%,
-                                transparent 100%
-                            );
-                            background-size: 200% 100%;
-                            animation: loading-sweep 1s ease-in-out infinite;
-                        }
-                    }
-
-                    &:has(.right-answer, .wrong-answer) li:not(.right-answer):not(.wrong-answer){
-                        display: none;
-                    }
-
-                    @media (min-width: 64rem){
-                        flex-direction: row;
-                        gap: 1rem;
-
-                        button{
-                            padding: 1rem;
-
-                            span{
-                                font-size: var(--paragraph-big);
-                            }
-                        }
-                    }
-                }
-
-                @media (min-width: 64rem){
-                    font-size: var(--heading-medium);
-                    padding: 1rem 2rem;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 2rem;
-                }
-
-                .quiz-navigation{
-                    display: flex;
-                    justify-content: space-between;
-                    padding-block-start: .3rem;
-
-                    a{
-                        padding-inline: .1rem;
-                        border: none;
-                        background: none;
-                        color: var(--secondary-text-color);
-                        display: block;
-                        position: relative;
-                    }
-
-                    /* https://css-irl.info/animating-underlines/ */
-                    a::after {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 0.1em;
-                        background-color: black;
-                        opacity: 0;
-                        transition: opacity 300ms, transform 300ms;
-                    }
-
-                    a:hover::after,
-                    a:focus::after {
-                        opacity: 1;
-                    }
-
-                    /* Slide in */
-                    a.next-link {
-                        overflow: hidden;
-                    }
-
-                    a.next-link::after {
-                        opacity: 1;
-                        transform: translate3d(-100%, 0, 0);
-                    }
-
-                    a.next-link:hover::after,
-                    a.next-link:focus::after{
-                        transform: translate3d(0, 0, 0);
-                    }
-
-                    /* Slide in */
-                    a.previous-link {
-                        overflow: hidden;
-                    }
-
-                    a.previous-link::after {
-                        opacity: 1;
-                        transform: translate3d(100%, 0, 0);
-                    }
-
-                    a.previous-link:hover::after,
-                    a.previous-link:focus::after{
-                        transform: translate3d(0, 0, 0);
-                    }  
-                }
-            }
-
-            h3, p, span, button{
-                color: var(--secondary-text-color);
-                text-align: center;
-                appearance: none;
-            }
-
-            button:hover{
-                
-                cursor: pointer;
-            }
-
-            @media (min-width: 64rem){
-
-            }
-        }
-    }
-
-    @media(min-width: 64rem){
-        padding: 1rem 3rem;
     }
 }
