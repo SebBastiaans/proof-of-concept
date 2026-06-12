@@ -65,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (newState) {
 			currentList.outerHTML = newState.outerHTML
 
-            // After update, scroll to next question if answer was correct
-			const rightAnswer = document.querySelector('.right-answer')
+            // After update, scroll to next question if THIS question was answered correctly
+			const updatedArticle = document.querySelector(`[data-enhanced="${enhancedKey}"]`)
+			const rightAnswer = updatedArticle?.querySelector('.right-answer')
 			if (rightAnswer) {
-				const currentQuestion = rightAnswer.closest('li[id^="vraag-"]')
+				const currentQuestion = updatedArticle.closest('li[id^="vraag-"]')
 				const nextQuestion = currentQuestion?.nextElementSibling
 				if (nextQuestion) {
 					nextQuestion.scrollIntoView({ behavior: 'smooth' })
