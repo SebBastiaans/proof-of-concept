@@ -726,3 +726,31 @@ section.contact{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
+
+/* MARK: footer footer  */
+section.footer{
+    background-color: var(--footer-background-color);
+    display: grid;
+    gap: 3rem;
+    padding-top: 3rem;
+
+    ul{
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul:first-of-type{
+        flex-direction: column;
+
+        li{
+            a:hover{
+                text-decoration: underline;
+            }  
+        }
+    }
+
+    ul:nth-of-type(2){
+        width: 100%;
+        align-items: center;
+    }
+}
