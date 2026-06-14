@@ -99,3 +99,12 @@ section{
         padding: 2.5rem 5rem;
     }
 }
+
+.visually-hidden:not(:focus):not(:active) {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
