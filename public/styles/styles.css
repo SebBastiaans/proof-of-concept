@@ -648,3 +648,70 @@ section.quiz{
     padding-bottom: 2.5rem;
     background-size: 13.5rem;
 }
+
+/* MARK: contact footer  */
+
+section.contact{
+    .logo-contact{
+        width: 183px;
+        height: 161px;
+    }
+
+    h3{
+        font-weight: 400;
+    }
+
+    h4{
+        font-weight: 700;
+    }
+
+    h3, h4{
+        font-family: inter, sans-serif;
+        padding-top: 1rem;
+        font-size: 1rem;
+    }
+
+    a:first-of-type{
+        text-decoration: underline;
+    }
+
+    ul{
+        display: flex;
+        gap: 1rem;
+
+        li{
+            width: 40px;
+            height: 40px;
+
+            background-color: var(--secondary-background-color);
+            border-radius: 50%;
+
+            a{
+                color: var(--secondary-text-color);
+                padding: .5rem;
+                display: flex;
+            }
+        }
+    }
+
+    form{
+        input{
+            appearance: none;
+            border: none;
+            border-bottom: 1px solid var(--primary-text-color);
+            background: none;
+            color: var(--primary-text-color);
+        }
+    }
+
+    button{
+        padding-top: 1rem;
+        border: 2px solid var(--primary-text-color);
+        background-color: var(--primary-text-color);
+
+        &:hover{
+            color: var(--primary-text-color);
+            background: none;
+        }
+    }
+}

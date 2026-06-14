@@ -79,6 +79,7 @@ h2{
     color: var(--secondary-text-color);
     transition: .2s ease;
     width: fit-content;
+    cursor: pointer;
 
     &:hover{
         color: var(--primary-accent-color);
