@@ -58,7 +58,6 @@ app.post('/', async (req, res) => {
       question: questionId,
       chosen_option: answer,
       is_correct: isCorrect,
-      attempt: 3
     }),
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
