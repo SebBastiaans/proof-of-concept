@@ -747,10 +747,18 @@ section.footer{
                 text-decoration: underline;
             }  
         }
+
+        @media(min-width: 64rem){
+            flex-direction: row;
+        }
     }
 
     ul:nth-of-type(2){
         width: 100%;
         align-items: center;
+    }
+
+    @media(min-width:64rem){
+        grid-template-columns: 1fr 1fr;
     }
 }
