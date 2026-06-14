@@ -640,3 +640,125 @@ section.quiz{
         padding: 1rem 3rem;
     }
 }
+
+/* tussen main en footer  */
+.breaker{
+    display: block;
+    background: url(/assets/images/diagonal_stripe_pattern_v5.svg);
+    padding-bottom: 2.5rem;
+    background-size: 13.5rem;
+}
+
+/* MARK: contact footer  */
+
+section.contact{
+    display: grid;
+    gap: 3rem;
+
+    section{
+        padding: 0;
+    }
+
+    .logo-contact{
+        width: 183px;
+        height: 161px;
+    }
+
+    h3{
+        font-weight: 400;
+    }
+
+    h4{
+        font-weight: 700;
+        padding-top: 1rem;
+    }
+
+    h3, h4{
+        font-family: inter, sans-serif;
+        font-size: 1rem;
+    }
+
+    a:first-of-type{
+        text-decoration: underline;
+    }
+
+    ul{
+        display: flex;
+        gap: 1rem;
+
+        li{
+            width: 40px;
+            height: 40px;
+
+            background-color: var(--secondary-background-color);
+            border-radius: 50%;
+
+            a{
+                color: var(--secondary-text-color);
+                padding: .5rem;
+                display: flex;
+            }
+        }
+    }
+
+    form{
+        input{
+            appearance: none;
+            border: none;
+            border-bottom: 1px solid var(--primary-text-color);
+            background: none;
+            color: var(--primary-text-color);
+        }
+    }
+
+    button{
+        margin-top: 1rem;
+        border: 2px solid var(--primary-text-color);
+        background-color: var(--primary-text-color);
+
+        &:hover{
+            color: var(--primary-text-color);
+            background: none;
+        }
+    }
+
+    @media(min-width:64rem){
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* MARK: footer footer  */
+section.footer{
+    background-color: var(--footer-background-color);
+    display: grid;
+    gap: 3rem;
+    padding-top: 3rem;
+
+    ul{
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul:first-of-type{
+        flex-direction: column;
+
+        li{
+            a:hover{
+                text-decoration: underline;
+            }  
+        }
+
+        @media(min-width: 64rem){
+            flex-direction: row;
+        }
+    }
+
+    ul:nth-of-type(2){
+        width: 100%;
+        align-items: center;
+    }
+
+    @media(min-width:64rem){
+        grid-template-columns: 1fr 1fr;
+    }
+}
