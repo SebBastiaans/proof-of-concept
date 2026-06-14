@@ -652,6 +652,13 @@ section.quiz{
 /* MARK: contact footer  */
 
 section.contact{
+    display: grid;
+    gap: 3rem;
+
+    section{
+        padding: 0;
+    }
+
     .logo-contact{
         width: 183px;
         height: 161px;
@@ -663,11 +670,11 @@ section.contact{
 
     h4{
         font-weight: 700;
+        padding-top: 1rem;
     }
 
     h3, h4{
         font-family: inter, sans-serif;
-        padding-top: 1rem;
         font-size: 1rem;
     }
 
@@ -705,7 +712,7 @@ section.contact{
     }
 
     button{
-        padding-top: 1rem;
+        margin-top: 1rem;
         border: 2px solid var(--primary-text-color);
         background-color: var(--primary-text-color);
 
@@ -713,5 +720,9 @@ section.contact{
             color: var(--primary-text-color);
             background: none;
         }
+    }
+
+    @media(min-width:64rem){
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
