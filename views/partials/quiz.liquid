@@ -34,7 +34,9 @@
                     <nav class="quiz-navigation" aria-label="Quiz navigatie">
                         {%  unless forloop.first %}
                                 <a class="previous-link" href="#vraag-{{ question_index |  minus: 1 }}">← Vorige</a>
-                        {% endunless %} 
+                        {% endunless %}
+
+                        <span class="quiz-counter"></span>
 
                         {%  unless forloop.last %}
                                 <a class="next-link" href="#vraag-{{ question_index |  plus: 1 }}">Volgende →</a>

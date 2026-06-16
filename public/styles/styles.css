@@ -542,6 +542,10 @@ section.quiz{
                         flex-direction: row;
                         gap: 1rem;
 
+                        li{
+                            flex: 1;
+                        }
+
                         button{
                             padding: 1rem;
 
@@ -561,9 +565,25 @@ section.quiz{
                 }
 
                 .quiz-navigation{
-                    display: flex;
-                    justify-content: space-between;
+                    display: grid;
+                    grid-template-columns: 1fr auto 1fr;
+                    align-items: center;
                     padding-block-start: .3rem;
+
+                    .quiz-counter{
+                        grid-column: 2;
+                        text-align: center;
+                    }
+
+                    a.previous-link{
+                        grid-column: 1;
+                        justify-self: start;
+                    }
+
+                    a.next-link{
+                        grid-column: 3;
+                        justify-self: end;
+                    }
 
                     a{
                         padding-inline: .1rem;

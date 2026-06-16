@@ -1,3 +1,13 @@
+// counts how many of the questions you've got right.
+function updateCounter() {
+	const total = document.querySelectorAll('article[data-enhanced^="question-"]').length
+	const correct = document.querySelectorAll('.right-answer').length
+	document.querySelectorAll('.quiz-counter').forEach(el => {
+		el.textContent = `${correct}/${total}`
+	})
+}
+
+// Confetti at the end of the quiz
 function fireConfetti() {
 	const end = Date.now() + 3000
 	const interval = setInterval(() => {
@@ -14,6 +24,8 @@ function fireConfetti() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	updateCounter()
+
 	const rightAnswer = document.querySelector('.right-answer')
 	const wrongAnswer = document.querySelector('.wrong-answer')
 
@@ -79,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if (newState) {
 			currentList.outerHTML = newState.outerHTML
+			updateCounter()
 
             // After update, scroll to next question if THIS question was answered correctly
 			const updatedArticle = document.querySelector(`[data-enhanced="${enhancedKey}"]`)
@@ -90,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					nextQuestion.scrollIntoView({ behavior: 'smooth' })
 				}
 
+				// starts the confetti after all questions are right
 				const allArticles = document.querySelectorAll('article[data-enhanced^="question-"]')
 				const allCorrect = [...allArticles].every(a => a.querySelector('.right-answer'))
 				if (allCorrect) {
