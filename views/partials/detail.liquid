@@ -1,11 +1,12 @@
 <picture class="main-image">
     <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=avif">
     <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=webp">
-    <img 
-        width="150" 
-        height="100" 
-        loading="eager" 
-        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}" 
+    <img
+        width="150"
+        height="100"
+        loading="eager"
+        fetchpriority="high"
+        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}"
         alt="{{ exhibits.title }}"
     >
 </picture>
