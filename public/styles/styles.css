@@ -699,12 +699,7 @@ section.quiz{
             }
 
             button:hover{
-                
                 cursor: pointer;
-            }
-
-            @media (min-width: 64rem){
-
             }
         }
     }
