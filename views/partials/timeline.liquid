@@ -1,58 +1,75 @@
 <style>
     {% for section in sections %}
         .timeline:has(#{{ section.slug }}:target) nav a[href="#{{ section.slug }}"]{
-            background-color: var(--primary-background-color);
-            color: var(--primary-text-color);
+            color: var(--primary-accent-color);
+            opacity: 1;
+
+            &:before{
+                background-color: var(--primary-accent-color);
+                opacity: 1;
+            }
         }
     {% endfor %}
 
     /* First link is active without target  */
     .timeline:not(:has(:target)) nav ol li:first-child a {
-        background-color: var(--primary-background-color);
-        color: var(--primary-text-color);
+        color: var(--primary-accent-color);
+        opacity: 1;
+
+        &:before{
+            background-color: var(--primary-accent-color);
+            opacity: 1;
+        }
     }
-</style> 
+
+</style>
 
 <section class="timeline">
-    <h2>Tijdlijn</h2>   
+    <h2>Tijdlijn</h2>
 
     <nav>
         <ol>
             {% for section in sections %}
-                <li><a href="#{{ section.slug }}">{{ section.start_year }}</a><p>{{ section.title }}</p></li>
+                <li>
+                    <a href="#{{ section.slug }}">{{ section.start_year }}<span>{{ section.title }}</span></a>
+
+                    <section class="timeline-information timeline-information-mobile" id="{{ section.slug }}">
+                        <p class="year-range">{{ section.start_year }} - {{ section.end_year }}</p>
+
+                        <h3>{{ section.title }}</h3>
+
+                        {% if section.cover %}
+                            <picture>
+                                <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=avif">
+                                <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp">
+                                <img
+                                    width="150"
+                                    height="100"
+                                    loading="lazy"
+                                    src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
+                                    alt="{{ section.title }}"
+                                >
+                            </picture>
+                        {% endif %}
+
+                        {% for block in section.content_blocks %}
+                            {% if block.block_type == 'heading' %}
+                                <h4>{{ block.text }}</h4>
+                            {% elsif block.block_type == 'paragraph' %}
+                                <p>{{ block.text }}</p>
+                            {% endif %}
+                        {% endfor %}
+
+                    </section>
+                </li>
             {% endfor %}
         </ol>
     </nav>
 
-    {% for section in sections %}
-        <section class="timeline-information" id="{{ section.slug }}">
+    {% render 'partials/timeline-desktop.liquid', sections: sections %}
 
-            <h3>{{ section.title }}</h3>
-
-            {% if section.cover %}
-                <picture>
-                    <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=avif">
-                    <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp">
-                    <img
-                        width="150"
-                        height="100"
-                        loading="lazy"
-                        src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
-                        alt="{{ section.title }}"
-                    >
-                </picture>
-            {% endif %}
-
-            <p class="year-range">{{ section.start_year }} - {{ section.end_year }}</p>
-
-            {% for block in section.content_blocks %}
-                {% if block.block_type == 'heading' %}
-                    <h4>{{ block.text }}</h4>
-                {% elsif block.block_type == 'paragraph' %}
-                    <p>{{ block.text }}</p>
-                {% endif %}
-            {% endfor %}
-
-        </section>
-    {% endfor %}
+    <div class="forward-quiz">
+        <p>Kennis testen?</p>
+        <a class="secondary-button-styled" href="#vraag-1">Naar de quiz</a>
+    </div>
 </section>

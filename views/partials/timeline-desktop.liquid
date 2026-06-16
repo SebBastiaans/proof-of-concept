@@ -1,0 +1,50 @@
+<style>
+    {% for section in sections %}
+        @media (min-width: 64rem){
+            .timeline:has(#{{ section.slug }}:target) .timeline-information-destkop[id="{{ section.slug }}"]{
+                opacity: 1;
+                pointer-events: auto;
+                position: relative;
+            }
+        }
+    {% endfor %}
+
+    @media (min-width: 64rem){
+        .timeline:not(:has(:target)) .timeline-information-destkop:first-of-type {
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
+        }
+    }
+</style>
+
+{% for section in sections %}
+    <section class="timeline-information timeline-information-destkop" id="{{ section.slug }}">
+        <p class="year-range">{{ section.start_year }} - {{ section.end_year }}</p>
+        
+        <h3>{{ section.title }}</h3>
+
+        {% if section.cover %}
+            <picture>
+                <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=avif">
+                <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp">
+                <img
+                    width="150"
+                    height="100"
+                    loading="lazy"
+                    src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
+                    alt="{{ section.title }}"
+                >
+            </picture>
+        {% endif %}
+
+        {% for block in section.content_blocks %}
+            {% if block.block_type == 'heading' %}
+                <h4>{{ block.text }}</h4>
+            {% elsif block.block_type == 'paragraph' %}
+                <p>{{ block.text }}</p>
+            {% endif %}
+        {% endfor %}
+
+    </section>
+{% endfor %}

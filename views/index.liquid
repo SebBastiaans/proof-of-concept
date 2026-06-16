@@ -1,16 +1,18 @@
-{%  render 'partials/head.liquid', exhibits: exhibits %}
+{% render 'partials/head.liquid', exhibits: exhibits %}
 
-{%  render 'partials/header.liquid', exhibits: exhibits %}
+{% render 'partials/header.liquid', exhibits: exhibits %}
 
 <main>
-    {%  render 'partials/detail.liquid', exhibits: exhibits, persons: persons %}
+    {% render 'partials/detail.liquid', exhibits: exhibits, persons: persons %}
 
-    {%  render 'partials/timeline.liquid', sections: sections %}
+    <hr>
+
+    {% render 'partials/timeline.liquid', sections: sections %}
 
     {% render 'partials/quiz.liquid', questions: questions, sections: sections, success: success, failed: failed, answer: answer %}
 </main>
 
-<hr class="breaker"></hr>
+<hr class="breaker">
 
 <footer>
     {% render 'partials/contact.liquid' %}
@@ -18,4 +20,4 @@
     {% render 'partials/footer.liquid' %}
 </footer>
 
-{%  render 'partials/foot.liquid' %}
+{% render 'partials/foot.liquid' %}
