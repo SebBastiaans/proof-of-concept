@@ -288,9 +288,9 @@ section.timeline{
     display: grid;
     grid-template-rows: auto auto 1fr;
     background-color: var(--darker-background-color);
-    margin: 1rem;
     max-width: 80rem;
     justify-self: center;
+    width: 100%;
 
     nav{
         width: 100%;
@@ -338,7 +338,7 @@ section.timeline{
         pointer-events: none;
         position: absolute;
         height: fit-content;
-        border-bottom: 2px solid var(--primary-background-color);
+        border-bottom: 2px solid var(--secondary-background-color);
 
         &:target{
             opacity: 1;
@@ -453,7 +453,7 @@ section.timeline{
 
         .forward-quiz{
             grid-area: forward;
-            border-top: 2px solid var(--primary-background-color);
+            border-top: 2px solid var(--secondary-background-color);
         }
     }    
 }
@@ -469,8 +469,6 @@ section.timeline{
 }
 
 section.quiz{
-    padding-inline: 1rem;
-
     ul.quiz-list{
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
@@ -702,10 +700,6 @@ section.quiz{
                 cursor: pointer;
             }
         }
-    }
-
-    @media(min-width: 64rem){
-        padding: 1rem 3rem;
     }
 }
 
