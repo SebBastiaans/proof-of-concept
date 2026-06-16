@@ -233,8 +233,8 @@ section.information-section{
         }
     }
 
-    ul{
-        li{
+    .content-blocks{
+        p{
             margin-bottom: 1rem;
             text-wrap: pretty;
         }
@@ -259,7 +259,7 @@ section.information-section{
             grid-row: 1;
         }
 
-        ul{
+        .content-blocks{
             grid-column: 2;
             grid-row-start: 2;
             grid-row-end: 9;

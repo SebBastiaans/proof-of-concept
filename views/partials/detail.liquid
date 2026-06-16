@@ -45,11 +45,9 @@
         <p class="displayed"><span></span>Onbekend of dit object te zien is</p>
     {% endif %}
 
-    <ul>
+    <div class="content-blocks">
         {% for content in exhibits.content_blocks %}
-            <li>
-                <p>{{ content.text }}</p>
-            </li>
+            <p>{{ content.text }}</p>
         {% endfor %}
-    </ul>
+    </div>
 </section>
