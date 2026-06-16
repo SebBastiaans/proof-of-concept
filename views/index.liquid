@@ -6,6 +6,8 @@
     {%  render 'partials/detail.liquid', exhibits: exhibits, persons: persons %}
 
     {%  render 'partials/timeline.liquid', sections: sections %}
+
+    {% render 'partials/quiz.liquid', questions: questions, sections: sections, success: success, failed: failed, answer: answer %}
 </main>
 
 <span class="breaker"></span>

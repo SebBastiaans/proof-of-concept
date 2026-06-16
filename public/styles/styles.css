@@ -398,10 +398,6 @@ section.timeline{
                 font-size: var(--heading-big);
                 padding-block: 0rem;
             }
-
-            h4, p{
-                padding-inline: 0rem;
-            }
         }
     }
 }
@@ -685,6 +681,7 @@ section.contact{
     ul{
         display: flex;
         gap: 1rem;
+        padding-top: 1rem;
 
         li{
             width: 40px;
