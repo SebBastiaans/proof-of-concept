@@ -91,7 +91,7 @@ main{
     picture.main-image{
         display: block;
         background: url(/assets/images/background-flower.svg);
-        background-color: #00001B;
+        background-color: var(--darker-background-color);
         padding-bottom: 2.5rem;
         background-size: 7rem;
 
