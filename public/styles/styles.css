@@ -643,6 +643,7 @@ section.quiz{
     background: url(/assets/images/diagonal_stripe_pattern_v5.svg);
     padding-bottom: 2.5rem;
     background-size: 13.5rem;
+    border: none;
 }
 
 /* MARK: contact footer  */
