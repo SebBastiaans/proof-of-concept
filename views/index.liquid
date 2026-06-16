@@ -5,6 +5,8 @@
 <main>
     {%  render 'partials/detail.liquid', exhibits: exhibits, persons: persons %}
 
+    <hr></hr>
+
     {%  render 'partials/timeline.liquid', sections: sections %}
 
     {% render 'partials/quiz.liquid', questions: questions, sections: sections, success: success, failed: failed, answer: answer %}

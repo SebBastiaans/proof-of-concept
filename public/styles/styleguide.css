@@ -92,6 +92,22 @@ h2{
     }
 }
 
+.secondary-button-styled{
+    padding: .5rem 1.5rem;
+    appearance: none;
+    border: 2px solid var(--primary-text-color);
+    background-color: var(--primary-text-color);
+    color: var(--secondary-text-color);
+    transition: .2s ease;
+    width: fit-content;
+    cursor: pointer;
+    
+    &:hover{
+        color: var(--primary-text-color);
+        background: none;
+    }
+}
+
 .small-heading{
     font-family: inter, sans-serif;
     font-size: var(--paragraph-small);
