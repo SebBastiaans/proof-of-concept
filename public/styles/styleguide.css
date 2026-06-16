@@ -57,6 +57,10 @@ p, a, span, button, summary{
     text-decoration: none;
 }
 
+p {
+    max-width: 65ch;
+}
+
 h1, h2, h3, h4{
     font-family: gentium, serif;
     color: var(--primary-text-color);
