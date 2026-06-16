@@ -346,6 +346,10 @@ section.timeline{
             color: var(--secondary-text-color);
             padding-inline: 1rem;
         }
+        .year-range{
+            font-family: gentium, serif;
+            font-weight: bold;
+        }
     }
 
     /* hide :first-of-type if a target is active */

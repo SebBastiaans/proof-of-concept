@@ -43,7 +43,7 @@
                 </picture>
             {% endif %}
 
-            <h4>{{ section.start_year }} - {{ section.end_year }}</h4>
+            <p class="year-range">{{ section.start_year }} - {{ section.end_year }}</p>
 
             {% for block in section.content_blocks %}
                 {% if block.block_type == 'heading' %}
