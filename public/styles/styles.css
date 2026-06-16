@@ -287,8 +287,10 @@ section.timeline{
     height: fit-content;
     display: grid;
     grid-template-rows: auto auto 1fr;
-    border: 2px solid var(--darker-background-color);
+    background-color: var(--darker-background-color);
     margin: 1rem;
+    max-width: 80rem;
+    justify-self: center;
 
     nav{
         width: 100%;
@@ -305,6 +307,10 @@ section.timeline{
                     
                     span{
                         padding-inline-start: .5rem;
+
+                        @media (min-width: 64rem){
+                            display: block;
+                        }
                     }
 
                     &:before{
@@ -332,6 +338,7 @@ section.timeline{
         pointer-events: none;
         position: absolute;
         height: fit-content;
+        border-bottom: 2px solid var(--primary-background-color);
 
         &:target{
             opacity: 1;
@@ -342,6 +349,10 @@ section.timeline{
 
         h3{
             padding: .5rem 1rem;
+
+            @media (min-width: 64rem){
+                border-inline-start: 2px solid var(--primary-accent-color);
+            }
         }
 
         img{
@@ -373,6 +384,20 @@ section.timeline{
             background-color: var(--primary-accent-color);
             opacity: .5;
             position: absolute;
+
+            @media (min-width: 64rem){
+                display: none;
+            }
+        }
+
+        @media (min-width: 64rem){
+            border: none;
+        }
+    }
+
+    .timeline-information-mobile{
+        @media (min-width: 64rem){
+            display: none;
         }
     }
 
@@ -389,59 +414,48 @@ section.timeline{
         padding: 1rem;
         justify-content: space-between;
         align-items: center;
-        border-top: 2px solid var(--darker-background-color);
+
+        p{
+            color: var(--primary-accent-color);
+        }
 
         a::after{
             content: '→';
             padding-inline-start: .5rem;
         }
     }
-}
 
-@media (min-width: 64rem){
-    section.timeline{
-        display: grid;
-        grid-template-columns: 19rem auto;
+    .timeline-information-destkop{
+        display: none;
+        padding: 0;
+
+        @media (min-width: 64rem){
+            display: block;
+            grid-area: section;
+        }
+    }
+
+    @media (min-width: 64rem){
+        grid-template-columns: 19rem 1fr;
         grid-template-areas: 
-        "title title"
-        "nav   article";
+        'title   title'
+        'nav     section'
+        'forward forward';
+        column-gap: 1rem;
 
         h2{
-            background-color: var(--secondary-background-color);
-            color: var(--secondary-text-color);
             grid-area: title;
         }
 
         nav{
             grid-area: nav;
-            display: flex;
-            flex-direction:column;
-
-            ol{
-                flex-direction: column;
-
-                li{
-                    a{
-                        display: block;
-                        width: 100%;
-                    }
-                    p{
-                        display: block;
-                        color: var(--secondary-text-color);
-                    }
-                }
-            }
         }
 
-        .timeline-information{
-            grid-area: article;
-
-            h3{
-                font-size: var(--heading-big);
-                padding-block: 0rem;
-            }
+        .forward-quiz{
+            grid-area: forward;
+            border-top: 2px solid var(--primary-background-color);
         }
-    }
+    }    
 }
 
 /* MARK: quiz cards */

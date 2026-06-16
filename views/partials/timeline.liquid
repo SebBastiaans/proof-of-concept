@@ -33,7 +33,7 @@
                 <li>
                     <a href="#{{ section.slug }}">{{ section.start_year }}<span>{{ section.title }}</span></a>
 
-                    <section class="timeline-information" id="{{ section.slug }}">
+                    <section class="timeline-information timeline-information-mobile" id="{{ section.slug }}">
                         <p class="year-range">{{ section.start_year }} - {{ section.end_year }}</p>
 
                         <h3>{{ section.title }}</h3>
@@ -65,6 +65,8 @@
             {% endfor %}
         </ol>
     </nav>
+
+    {%  render 'partials/timeline-desktop.liquid', sections: sections %}
 
     <div class="forward-quiz">
         <p>Kennis testen?</p>
