@@ -25,19 +25,19 @@
     </nav>
 
     {% for section in sections %}
-        <article id="{{ section.slug }}">
-            
+        <section class="timeline-information" id="{{ section.slug }}">
+
             <h3>{{ section.title }}</h3>
 
             {% if section.cover %}
                 <picture>
                     <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=avif">
                     <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ section.cover }}?format=webp">
-                    <img 
-                        width="150" 
-                        height="100" 
-                        loading="lazy" 
-                        src="https://fdnd-agency.directus.app/assets/{{ section.cover }}" 
+                    <img
+                        width="150"
+                        height="100"
+                        loading="lazy"
+                        src="https://fdnd-agency.directus.app/assets/{{ section.cover }}"
                         alt="{{ section.title }}"
                     >
                 </picture>
@@ -53,6 +53,6 @@
                 {% endif %}
             {% endfor %}
 
-        </article>
+        </section>
     {% endfor %}
 </section>
