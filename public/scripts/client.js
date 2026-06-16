@@ -1,3 +1,18 @@
+function fireConfetti() {
+	const end = Date.now() + 3000
+	const interval = setInterval(() => {
+		if (Date.now() > end) {
+			clearInterval(interval)
+			return
+		}
+		confetti({
+			particleCount: 60,
+			spread: 70,
+			origin: { y: 0.6 }
+		})
+	}, 250)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	const rightAnswer = document.querySelector('.right-answer')
 	const wrongAnswer = document.querySelector('.wrong-answer')
@@ -73,6 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				const nextQuestion = currentQuestion?.nextElementSibling
 				if (nextQuestion) {
 					nextQuestion.scrollIntoView({ behavior: 'smooth' })
+				}
+
+				const allArticles = document.querySelectorAll('article[data-enhanced^="question-"]')
+				const allCorrect = [...allArticles].every(a => a.querySelector('.right-answer'))
+				if (allCorrect) {
+					fireConfetti()
 				}
 			}
 		}
