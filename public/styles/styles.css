@@ -426,6 +426,7 @@ section.quiz{
     ul.quiz-list{
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
         gap: 25rem;
 
         display: flex;
