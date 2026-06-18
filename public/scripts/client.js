@@ -23,8 +23,24 @@ function fireConfetti() {
 	}, 250)
 }
 
+// Timeline sections exist twice (mobile + desktop copy, same id) so anchor
+// links always jump to the first one in the DOM. If that copy is hidden at
+// the current breakpoint the browser can't scroll to it, so do it manually.
+function scrollToVisibleTarget(id) {
+	if (!id) return
+	const matches = document.querySelectorAll(`[id="${id}"]`)
+	if (matches.length < 2) return
+	const visible = [...matches].find(el => el.getClientRects().length > 0)
+	visible?.scrollIntoView({ behavior: 'smooth' })
+}
+
+window.addEventListener('hashchange', () => {
+	scrollToVisibleTarget(location.hash.slice(1))
+})
+
 document.addEventListener('DOMContentLoaded', () => {
 	updateCounter()
+	scrollToVisibleTarget(location.hash.slice(1))
 
 	const rightAnswer = document.querySelector('.right-answer')
 	const wrongAnswer = document.querySelector('.wrong-answer')

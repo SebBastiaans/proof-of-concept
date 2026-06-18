@@ -364,6 +364,7 @@ section.timeline{
             transform: translateX(-50%);
             left: 50%;
             padding-top: 1rem;
+            padding-inline: 1rem;
         }
 
         h4, p{
@@ -545,6 +546,8 @@ section.quiz{
                             color: var(--primary-text-color);
                             display: flex;
                             flex-direction: column;
+                            gap: 1rem;
+                            align-items: center;
 
                             p{
                                 color: var(--primary-text-color);
