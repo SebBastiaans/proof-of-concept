@@ -1,12 +1,28 @@
 <picture class="main-image">
-    <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=avif">
-    <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}?format=webp">
+    <source
+        type="image/avif"
+        sizes="100vw"
+        srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=avif&width=480 480w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=avif&width=768 768w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=avif&width=1024 1024w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=avif&width=1440 1440w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=avif&width=1920 1920w"
+    >
+    <source
+        type="image/webp"
+        sizes="100vw"
+        srcset="https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=webp&width=480 480w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=webp&width=768 768w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=webp&width=1024 1024w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=webp&width=1440 1440w,
+                https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?format=webp&width=1920 1920w"
+    >
     <img
-        width="150"
-        height="100"
+        width="{{ exhibits.cover.width }}"
+        height="{{ exhibits.cover.height }}"
         loading="eager"
         fetchpriority="high"
-        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover }}"
+        src="https://fdnd-agency.directus.app/assets/{{ exhibits.cover.id }}?width=1024"
         alt="{{ exhibits.title }}"
     >
 </picture>

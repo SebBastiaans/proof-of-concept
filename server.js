@@ -17,7 +17,7 @@ app.set('views', './views')
 
 app.get('/', async (req, res) => {
   
-  const exhibitResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1?')
+  const exhibitResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits/1?fields=*,cover.id,cover.width,cover.height')
   const exhibitResponseJSON = await exhibitResponse.json()
 
   const sectionResponse = await fetch('https://fdnd-agency.directus.app/items/teylers_museum_exhibits_sections?fields=*')
