@@ -3,7 +3,7 @@ Ontwerp en maak een data driven online concept voor een opdrachtgever
 De instructies voor deze opdracht staan in: [docs/INSTRUCTIONS.md](https://github.com/fdnd-task/proof-of-concept/blob/main/docs/INSTRUCTIONS.md)
 
 # Titel
-Interactieve tijdlijn met quiz voor Teylers Museum.
+Interactieve tijdlijn met quiz in samenwerking met Q42 voor Teylers Museum.
 
 ## Inhoudsopgave
 
@@ -15,7 +15,7 @@ Interactieve tijdlijn met quiz voor Teylers Museum.
   * [Licentie](#licentie)
 
 ## Beschrijving
-Teylers Museum en Q42 werken aan een breder digitaal museumplatform waarin topstukken, verhalen en educatieve werkvormen op een samenhangende manier worden aangeboden. De opdracht is: bouw een nieuwe, uitgebreide detailpagina voor het topstuk “Grote Elektriseermachine met Leidse flessen”. De focus heb ik gelegd op een tijdlijn met een gekoppelde quiz.
+[Teylers Museum](https://teylersmuseum.nl/nl) en [Q42](https://www.q42.nl/) werken aan een breder digitaal museumplatform waarin topstukken, verhalen en educatieve werkvormen op een samenhangende manier worden aangeboden. De opdracht is: bouw een nieuwe, uitgebreide detailpagina voor het topstuk “Grote Elektriseermachine met Leidse flessen”. De focus heb ik gelegd op een tijdlijn met een gekoppelde quiz.
 
 https://github.com/user-attachments/assets/45d3f281-e06a-4ce1-8763-c5c9c65cc7f2
 
